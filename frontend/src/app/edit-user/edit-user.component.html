@@ -1,0 +1,121 @@
+<div class="container-fluid content">
+  <div class="container ">
+    <div class="row justify-content-center">
+      <div class="card ">
+        <div class="card-header">
+          <h2>Edit User</h2>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="updateForm">
+            <div class="form-row">
+              <label for="name" class="col-sm-2 col-form-label">Name</label>
+              <div class="col">
+                <input type="text" [ngClass]="{'invalid' :updateForm.get('name').invalid && (updateForm.get('name').touched)}"
+                  class="form-control" [pattern]="nameRegex" placeholder="Full Name" formControlName="name"
+                  [minlength]="3" [maxlength]="40" #name>
+                <div *ngIf="updateForm.get('name').invalid && (updateForm.get('name').dirty || updateForm.get('name').touched)"
+                  class="hasError">
+                  <div *ngIf="updateForm.get('name').hasError('required')">
+                    <div class=" show-error-msg">
+                      <small>Name cannot be empty</small>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="updateForm.get('name').invalid && (updateForm.get('name').touched)" class="hasError">
+                  <div *ngIf="updateForm.get('name').hasError('pattern')">
+                    <div class=" show-error-msg">
+                      <small>Invalid name, No special characters or nummbers. Must have space between first and last
+                        name.</small>
+                    </div>
+                  </div>
+                  <div *ngIf="updateForm.get('name').hasError('minlength')">
+                    <div class=" show-error-msg">
+                      <small>Name should be between 3 and 40 characters</small>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="username" class="col-sm-2 col-form-label">Username</label>
+              <div class="col">
+                <input type="text" class="form-control"
+                  [ngClass]="{'invalid' : updateForm.get('username').invalid && (updateForm.get('username').touched) }"
+                  [pattern]="usernameRegex" placeholder="Username" [minlength]="8" (blur)="checkUsername(username.value)"
+                 [maxlength]="20" formControlName="username" #username>
+                <div *ngIf="updateForm.get('username').invalid && (updateForm.get('username').dirty || updateForm.get('username').touched)"
+                  class="hasError">
+                  <div *ngIf="updateForm.get('username').hasError('required')">
+                    <div class=" show-error-msg">
+                      <small>Username cannot be empty.</small>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="updateForm.get('username').invalid && (updateForm.get('username').touched)"
+                  class="hasError">
+                  <div *ngIf="updateForm.get('username').hasError('pattern')">
+                    <div class=" show-error-msg">
+                      <small>Username must be alphanumeric and no special characters(./_ is allowed)</small>
+                    </div>
+                  </div>
+                  <div *ngIf="updateForm.get('username').hasError('minlength')">
+                    <div class=" show-error-msg">
+                      <small>Username should be between 8 and 20 characters</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="permission" class="col-sm-2 col-form-label">Permission</label>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Permission" formControlName="permission" #permission>
+              </div>
+            </div>
+            
+              <input  type="hidden" class="form-control" placeholder="Permission" formControlName="email" #email>
+              <!-- <input  type="hidden" class="form-control" placeholder="Permission" formControlName="password" #password> -->
+ 
+           
+            <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> {{message}}.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="form-row">
+              <div class="col form-button">
+                <button type="button" class="btn btn-dark"
+                  (click)="updateUser(name.value, username.value, permission.value, email.value)" 
+                  [disabled]="updateForm.pristine || updateForm.invalid" data-toggle="modal" data-target="#info" >Update</button>
+                  <button type="submit" class="btn btn-danger" routerLink="/dashboard">Back</button>
+              </div>
+            </div>
+          </form>
+          <div class="modal" tabindex="-1" id="info" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div *ngIf="showMsg">
+                    <p>Update Successful..!</p>
+                  </div>
+                  <div *ngIf="!showMsg">
+                    <p>Update Failed..!</p>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" routerLink="/friends" class="btn btn-primary" data-dismiss="modal">Back to
+                    Friends</button>
+                  <div *ngIf="showMsg">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue Editting</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

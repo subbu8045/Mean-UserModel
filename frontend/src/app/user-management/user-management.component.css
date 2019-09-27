@@ -1,0 +1,25 @@
+table td ,th {
+    text-align: center
+}
+ table.table td a {
+		cursor: pointer;
+        display: inline-block;
+        margin: 0 5px;
+		min-width: 24px;
+    }   
+table.table td a.edit {
+    color: #008cfd;
+    text-decoration: underline;
+
+}
+table.table td a.delete {
+    color: #E34724;
+        text-decoration: underline;
+}
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.card{
+    width:auto;
+}

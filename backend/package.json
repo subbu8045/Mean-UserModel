@@ -18,7 +18,7 @@
     "express-session": "^1.16.2",
     "fs": "0.0.1-security",
     "gridfs-stream": "^1.1.1",
-    "i": "^0.3.6",
+    "i": "^0.3.7",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.10",
     "mongoose-title-case": "^0.1.1",

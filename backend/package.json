@@ -20,7 +20,7 @@
     "gridfs-stream": "^1.1.1",
     "i": "^0.3.6",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.6.10",
+    "mongoose": "^5.7.5",
     "mongoose-title-case": "^0.1.1",
     "mongoose-validator": "^2.1.0",
     "morgan": "^1.9.1",
